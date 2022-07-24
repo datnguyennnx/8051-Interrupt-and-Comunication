@@ -1,0 +1,1 @@
+#### [Check it, we have added video " Answering the question of teacher and classmate ".](https://hcmuteeduvn-my.sharepoint.com/:v:/g/personal/20119125_st_hcmute_edu_vn/Ee-zdpqkQEhIm3NTv4HKbEkBIZUxaBJJIAYBV-mXoHJmTw?e=ixotwo) 
