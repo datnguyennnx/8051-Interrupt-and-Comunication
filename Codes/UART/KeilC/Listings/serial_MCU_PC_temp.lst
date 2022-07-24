@@ -1,0 +1,102 @@
+C51 COMPILER V9.60.0.0   SERIAL_MCU_PC_TEMP                                                06/17/2022 23:19:57 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE SERIAL_MCU_PC_TEMP
+OBJECT MODULE PLACED IN .\Objects\serial_MCU_PC_temp.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE serial_MCU_PC_temp.c OPTIMIZE(8,SPEED) DEBUG OBJECTEXTEND PRINT(.\Listin
+                    -gs\serial_MCU_PC_temp.lst) TABS(2) OBJECT(.\Objects\serial_MCU_PC_temp.obj)
+
+line level    source
+
+   1          #include <at89x52.h>
+   2          #include <string.h>
+   3          #include <stdio.h>
+   4          
+   5          // initial global variables
+   6          int i;
+   7          unsigned char rdata;
+   8          
+   9          void sendchar(unsigned char a)                 
+  10          {
+  11   1        SBUF = a;                                
+  12   1        while(TI==0){}                    
+  13   1        TI=0;                                      
+  14   1      }
+  15          
+  16          void sendstring(char *a)                 
+  17          {
+  18   1        int i,n;                                     
+  19   1        n = strlen(a);                           
+  20   1        for(i=0;i<n;i++)                   
+  21   1         {                                              
+  22   2          sendchar(a[i]);                 
+  23   2         }         
+  24   1      }
+  25          
+  26          void setup (){
+  27   1        TMOD = 0x20;      //Select Timer1, Mode 2                   
+  28   1        SCON = 0x50;      //Select Mode 1
+  29   1        TH1= 0xFD;        //Set baudrate 9600
+  30   1        TR1 = 1;          //Enable Timer1 
+  31   1        IE = 0x90;        //Enabling Serial Interrupt
+  32   1      }
+  33          
+  34          void serint(void) interrupt 4 using 1 {
+  35   1      
+  36   1        if(P2) // The loop checks the signal from the P2 pin. 
+  37   1        { 
+  38   2          rdata = SBUF; // Assign the data received to variable rdata
+  39   2          RI = 0;       // Set RI flag 
+  40   2        }
+  41   1      
+  42   1        switch(rdata){
+  43   2          case('0'): {  
+  44   3          // Set Odd LED
+  45   3          P2_0 = 0; P2_2 = 0; P2_4 = 0; P2_6 = 0;
+  46   3          P2_1 = 1; P2_3 = 1; P2_5 = 1; P2_7 = 1;
+  47   3          break;
+  48   3          }
+  49   2            
+  50   2          case('1'): {    
+  51   3          // Set Even LED
+  52   3          P2_0 = 1; P2_2 = 1; P2_4 = 1; P2_6 = 1;
+  53   3          P2_1 = 0; P2_3 = 0; P2_5 = 0; P2_7 = 0;
+  54   3          break;
+C51 COMPILER V9.60.0.0   SERIAL_MCU_PC_TEMP                                                06/17/2022 23:19:57 PAGE 2   
+
+  55   3          }     
+  56   2          
+  57   2          default: {  
+  58   3          // Turn off all LED     
+  59   3          P2_0 = 1; P2_2 = 1; P2_4 = 1; P2_6 = 1;
+  60   3          P2_1 = 1; P2_3 = 1; P2_5 = 1; P2_7 = 1;
+  61   3          break;
+  62   3          }
+  63   2        }
+  64   1      }
+  65          
+  66          
+  67          void main () 
+  68          { 
+  69   1        setup();
+  70   1        while(1){
+  71   2          sendstring("BAUDRATE 9600 8051 MICROCONTROLLER FINAL PROJECT  \n\r");
+  72   2        }
+  73   1      }
+  74          
+  75          
+  76          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    164    ----
+   CONSTANT SIZE    =     53    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      3       5
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

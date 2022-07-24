@@ -1,0 +1,59 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              09/30/2019 09:19:58 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          /*==========================//=================================================
+   2            * Ten Tep      :        main.c
+   3            * Tac Gia      :        www.hocdientu123.vn
+   4            * Ngay         :        01-08-2019
+   5            * Tom Tat      :        Chuong trinh dieu khien NGAT ngoai.
+   6          ==========================//=================================================*/
+   7          //===========================khai bao cac thu vien can su dung==============//
+   8          #include<main.h>
+   9          //===========================dinh nghia cac chan vao ra======================//
+  10          sbit LED1 = P1^0; //khai bao LED1 o chan P1.0
+  11          sbit LED2 = P1^1; //khai bao LED1 o chan P1.0
+  12          //============================khai bao bien va hang==========================//
+  13          
+  14          //============================HAM MAIN=======================================//
+  15          int main()
+  16            {
+  17   1            EA  = 1;    //cho phep ngat toan cuc
+  18   1            EX0 = 1;    //chon ngat ngoai INT0
+  19   1            IT0 = 1;    //chon ngat canh xuong
+  20   1            LED2=0;     //ban dau cho LED2 tat
+  21   1            while(1)
+  22   1              {
+  23   2                  LED1=1;
+  24   2                  delay_ms(200);
+  25   2                  LED1=0;
+  26   2                  delay_ms(200);
+  27   2              }
+  28   1        }
+  29          /*==================================================================================
+  30            *Chuc nang: phuc vu ngat INT0
+  31          ===================================================================================*/
+  32          void External0_ISR() interrupt 0
+  33          {
+  34   1        LED2 = ~LED2; //dao trang thai LED2
+  35   1      } 
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     31    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
