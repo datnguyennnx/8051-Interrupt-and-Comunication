@@ -1,0 +1,5 @@
+".\Objects\STARTUP.obj",
+".\Objects\Lab1.obj" 
+TO ".\Objects\Lab1" 
+
+PRINT(".\Listings\Lab1.map")

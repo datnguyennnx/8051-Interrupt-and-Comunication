@@ -1,0 +1,5 @@
+#### In the previous semester, after learning a great deal of theory and the fundamentals of computer architecture and organization, we spent 15 weeks working together to understand in the real.
+We intend to work on:
+- 5 weeks: Applied Assembly with emu8086 to comprehend the 8086's footprint and how memory can be controlled through registers. We solve challenges and draw conclusions based on what we study each week. We have had an exam to test our knowledge five weeks later.
+- 5 weeks: Applied Assembly with edsim51 to comprehend the 8051's footprint and how memory can be controlled through registers. We solve challenges and draw conclusions based on what we study each week. We have had an exam to test our knowledge five weeks later.
+- 5 weeks: Applied simulation with Proteus and the assembly and C programming languages to understand the 8051's footprint and compare CPI between low-level and high-level languages. Five weeks later, we had a knowledge test interview.
